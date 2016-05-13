@@ -53,6 +53,7 @@
 <template name="user">
   <h1>USER PAGE</h1>
   {{> rankings}}
+  {{> usersMissions}}
   {{> getMission}}
 </template>
 
@@ -66,6 +67,18 @@
   <form class="get-mission">
     <input type="text" name="location" placeholder="Location">
   </form>
+</template>
+
+<!-- NEXT MISSIONS TEMPLATE -->
+<template name="usersMissions">
+  {{#each user_mission}}
+    {{> user_mission_type}}
+  {{/each}}
+</template>
+
+<!-- SINGLE USER-MISSION TEMPLATE -->
+<template name="user_mission_type">
+    <li><div>Location: {{location}}</div></li>
 </template>
 
 

@@ -1,3 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 
-export const Missions = new Mongo.Collection('missions');
+// mission collection
+Missions = new Mongo.Collection('missions');
+
+// users collection
+Users = new Mongo.Collection('users');
+
+// users collection
+UsersMissions = new Mongo.Collection('users_missions');

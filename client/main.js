@@ -1,8 +1,11 @@
 // mission collection
-Missions = new Mongo.Collection('Misson');
+Missions = new Mongo.Collection('missions');
 
 // users collection
-Users = new Mongo.Collection('User');
+Users = new Mongo.Collection('users');
+
+// users collection
+UsersMissions = new Mongo.Collection('users_missions');
 
 // routes
 Router.route('/', {
@@ -41,18 +44,25 @@ if (Meteor.isClient) {
 
       // Clear form
       $("[name=name]").val(''),
-      $("[name=description]").val('User');
+      $("[name=description]").val('');
     },
   });
 
   /* USER */
   Template.getMission.events({
     'submit .get-mission'(e){
-
-      Users.insert({
-        location: $([name="location"]).val(),
+      e.preventDefault();
+      UsersMissions.insert({
+        location: $("[name=location]").val(),
+        createdAt: new Date(),
       });
+      $("[name=location]").val('why not man');
+    }
+  })
 
+  Template.usersMissions.helpers({
+    'user_mission': function(){
+      return UsersMissions.find();
     }
   })
 }
