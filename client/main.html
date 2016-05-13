@@ -1,0 +1,72 @@
+<!-- App Layout -->
+<template name="main">
+  <body>
+    <h1>Todos</h1>
+    {{> index_navigation}}
+    {{> yield}}
+    <hr />
+    <p>Copyright &copy; Giving Agency, 2016.</p>
+  </body>
+</template>
+
+<!-- NAVBAR TEMLATE -->
+<template name="index_navigation">
+  <nav>
+    <ul>
+      <li><a href="{{pathFor route='home'}}">Home</a></li>
+      <li><a href="{{pathFor route='sponsor'}}">Sponsor</a></li>
+      <li><a href="{{pathFor route='user'}}">User</a></li>
+    </ul>
+  </nav>
+</template>
+
+<!-- INDEX TEMPLATE -->
+<template name="home">
+  Welcome to the giving agency guys!
+</template>
+
+<!-- ADD MISSION FORM TEMPLATE -->
+<template name="addMission">
+  <form class="new-mission">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="description" placeholder="Description">
+    <input type="submit">
+  </form>
+</template>
+
+<!-- SPONSOR PAGE TEMPLATE-->
+<template name="sponsor">
+  {{> addMission}}
+  <ul>
+  {{#each mission}}
+    {{> mission_type}}
+  {{/each}}
+  </ul>
+</template>
+
+<!-- SINGLE MISSION TEMPLATE -->
+<template name="mission_type">
+    <li><div>Name: {{name}} | Descr: {{description}}</div></li>
+</template>
+
+<!-- USER PAGE TEMPLATE -->
+<template name="user">
+  <h1>USER PAGE</h1>
+  {{> rankings}}
+  {{> getMission}}
+</template>
+
+<!-- RANKINGS TEMPLATE-->
+<template name="rankings">
+  
+</template>
+
+<!-- ADD MISSION TEMPLATE-->
+<template name="getMission">
+  <form class="get-mission">
+    <input type="text" name="location" placeholder="Location">
+  </form>
+</template>
+
+
+
