@@ -1,10 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 
-// mission collection
-Missions = new Mongo.Collection('missions');
+import '../imports/api/missions.js';
+import '../imports/api/sponsors.js';
+import '../imports/api/giver.js';
+import '../imports/api/users_missions.js';
 
-// users collection
-Users = new Mongo.Collection('users');
 
-// users collection
-UsersMissions = new Mongo.Collection('users_missions');
