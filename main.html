@@ -1,0 +1,140 @@
+<!-- App Layout -->
+<template name="main">
+  <body>
+    {{> navigation}}
+    <div class="container vertical-fill">
+    {{> yield}}
+    </div>
+  </body>
+</template>
+
+<!-- NAVBAR TEMPLATE -->
+<template name="navigation">
+    <nav class="navbar navbar-default" style="border-radius:0 !important">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Giving Agency</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {{> navItems}}
+            </ul>
+        </div>
+    </nav>
+</template>
+
+<template name='navItems'>
+  {{#if currentUser}}
+    <li role="presentation"><a class="logout" href="#">Logout</a></li>
+  {{else}}
+    <li role="presentation"><a href="{{pathFor route='register'}}">Register</a></li>
+    <li role="presentation"><a href="{{pathFor route='login'}}">Login</a></li>
+  {{/if}}  
+</template>
+
+<!-- INDEX TEMPLATE -->
+
+<!-- REGISTER TEMPLATE -->
+<template name="register">
+  <h2>REGISTER</h2>
+  <ul class="nav nav-pills">
+    <li class="active"><a data-toggle="tab" href="#giv">Giver</a></li>
+    <li><a data-toggle="tab" href="#spo">Sponsor</a></li>
+  </ul>
+  {{> tabContent}}
+  
+</template>
+
+<template name="tabContent">
+  <div class="tab-content" style="margin: 20px">
+    <div class="tab-pane fade in active">
+      <form class="register" data-is-giver="true">
+        <p>Email: <input type="email" name="email"></p>
+        <p>First Name: <input type="text" name="firstName"></p>
+        <p>Last Name: <input type="text" name="lastName"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <p><input type="submit" value="Register"></p>
+      </form>
+    </div>
+    <div id="spo" class="tab-pane fade">
+      <form class="register" data-is-giver="false">
+        <p>Email: <input type="email" name="email"></p>
+        <p>Name: <input type="text" name="name"></p>
+        <p>Location: <input type="text" name="location"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <p><input type="submit" value="Register"></p>
+      </form>
+    </div>
+  </div>
+</template>
+
+<!-- LOGIN TEMPLATE -->
+<template name="login">
+  <h2>LOGIN</h2>
+  <form class="login">
+    <p>Email:<input type="text" name="email"></p>
+    <p>Password: <input type="password" name="password"></p>
+    <p><input type="submit" value="Login"></p>
+  </form>
+</template>
+
+<!-- ADD MISSION FORM TEMPLATE -->
+<template name="addMission">
+  <form class="new-mission">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="description" placeholder="Description">
+    <input type="submit">
+  </form>
+</template>
+
+<!-- SPONSOR PAGE TEMPLATE-->
+<template name="sponsor">
+  <div class="vertical-fill">
+  <h2>Sponsor</h2>
+  {{> addMission}}
+  <ul>
+  {{#each mission}}
+    {{> mission_type}}
+  {{/each}}
+  </ul>
+  </div>
+</template>
+
+<!-- SINGLE MISSION TEMPLATE -->
+<template name="mission_type">
+    <li><div>Name: {{name}} | Descr: {{description}}</div></li>
+</template>
+
+<!-- GIVER PAGE TEMPLATE -->
+<template name="giver">
+  <h2>GIVER</h2>
+  {{> rankings}}
+  {{> usersMissions}}
+  {{> getMission}}
+</template>
+
+<!-- RANKINGS TEMPLATE-->
+<template name="rankings">
+  
+</template>
+
+<!-- ADD MISSION TEMPLATE-->
+<template name="getMission">
+  <form class="get-mission">
+    <input type="text" name="location" placeholder="Location">
+  </form>
+</template>
+
+<!-- NEXT MISSIONS TEMPLATE -->
+<template name="usersMissions">
+  {{#each user_mission}}
+    {{> user_mission_display}}
+  {{/each}}
+</template>
+
+<!-- SINGLE USER-MISSION TEMPLATE -->
+<template name="user_mission_display">
+    <li><div>Location: {{location}}</div></li>
+</template>
+
+
+
